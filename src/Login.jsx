@@ -5,13 +5,13 @@ import { useNavigate } from "react-router";
 
 export default function Login() {
   const navigate = useNavigate();
-  const [ownerName, setOwnerName] = useState("");
+  const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
-    Axios.get("/api/owner/isLoggedIn")
+    Axios.get("/api/user/isLoggedIn")
       .then(() => {
-        navigate("/myPokemon");
+        navigate("/myTweet");
       })
       .catch((err) => {
         console.log(err);
@@ -22,16 +22,16 @@ export default function Login() {
     setPassword(event.target.value);
   }
 
-  function updateOwnerName(event) {
-    setOwnerName(event.target.value);
+  function updateUserName(event) {
+    setUserName(event.target.value);
   }
 
-  function createOwner() {
-    Axios.post("/api/owner/authenticate", {
-      name: ownerName,
+  function createUser() {
+    Axios.post("/api/user/authenticate", {
+      name: userName,
       password,
     }).then(function (response) {
-      navigate("/myPokemon");
+      navigate("/myTweet");
     });
   }
 
@@ -39,14 +39,14 @@ export default function Login() {
     <div>
       <p1>Login with Existing User</p1>
       <div>
-        <label>Name:</label>
-        <input type="text" onInput={updateOwnerName}></input>
+        <label>Username:</label>
+        <input type="text" onInput={updateUserName}></input>
       </div>
       <div>
         <label>Password:</label>
         <input type="password" onInput={updatePassword}></input>
       </div>
-      <button onClick={createOwner}>Submit</button>
+      <button onClick={createUser}>Submit</button>
     </div>
   );
 }

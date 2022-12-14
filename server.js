@@ -1,6 +1,6 @@
 const express = require("express");
-const PokemonRoute = require("./api/pokemon");
-const OwnerRoute = require("./api/owner");
+const TweetRoute = require("./api/tweet");
+const UserRoute = require("./api/user");
 const HelperFunctions = require("./helper");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -23,8 +23,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api/pokemon", PokemonRoute);
-app.use("/api/owner", OwnerRoute);
+app.use("/api/tweet", TweetRoute);
+app.use("/api/user", UserRoute);
 
 app.get("/api/goodbye", (req, res) => {
   res.send("Goodbye, Web Dev");
