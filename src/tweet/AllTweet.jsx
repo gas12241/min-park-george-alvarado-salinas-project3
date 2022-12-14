@@ -5,6 +5,16 @@ import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 export default function AllTweet() {
+  let loggedInClass = "loggedInClass";
+  useEffect(() => {
+    Axios.get("/api/user/isLoggedIn")
+      .then(() => {
+        loggedInClass = "loggedInClass";
+      })
+      .catch((err) => {
+        loggedInClass = "notLoggedInClass";
+      });
+  }, []);
   const [tweets, setTweets] = useState([]);
   const [tweetInput, setTweetInput] = useState({
     name: "",
@@ -73,7 +83,8 @@ export default function AllTweet() {
   }
 
   return (
-    <div>
+    // Different styles for logged in.
+    <div className={loggedInClass}>
       <div>Here are all my Tweets: </div>
       <ul>{tweet_components}</ul>
       <div>

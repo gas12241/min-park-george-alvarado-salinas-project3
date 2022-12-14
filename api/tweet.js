@@ -51,16 +51,6 @@ router.get("/tweetsByUser", function (request, response) {
   }
 });
 
-/*
-router.get("/pokemonGreaterThan10", function (request, response) {
-  return PokemonModel.getAllPokemonHealthAbove10().then(function (
-    pokemonResult
-  ) {
-    return response.send(pokemonResult);
-  });
-});
-*/
-
 router.get("/user", function (request, response) {
   const user = request.cookies.userName;
 

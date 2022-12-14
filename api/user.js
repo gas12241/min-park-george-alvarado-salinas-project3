@@ -31,10 +31,11 @@ router.post("/register", function (request, response) {
 });
 
 router.post("/authenticate", function (req, res) {
-  const username = req.body.username;
+  const username = req.body.name;
   const password = req.body.password;
-
+  console.log("random string");
   UserModel.getUserByName(username).then((user) => {
+    console.log(user);
     if (user.password === password) {
       const cookie = {
         userName: user.name,
@@ -49,7 +50,7 @@ router.post("/authenticate", function (req, res) {
         .status(200)
         .send({ username });
     } else {
-      return res.send(400).send("The password does not work");
+      return res.status(400).send("The password does not work");
     }
   });
 });
