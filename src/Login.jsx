@@ -11,7 +11,7 @@ export default function Login() {
   useEffect(() => {
     Axios.get("/api/user/isLoggedIn")
       .then(() => {
-        navigate("/myTweet");
+        navigate("/all");
       })
       .catch((err) => {
         console.log(err);
@@ -31,7 +31,8 @@ export default function Login() {
       name: userName,
       password,
     }).then(function (response) {
-      navigate("/myTweet");
+      location.reload();
+      navigate("/all");
     });
   }
 

@@ -33,9 +33,7 @@ router.post("/register", function (request, response) {
 router.post("/authenticate", function (req, res) {
   const username = req.body.name;
   const password = req.body.password;
-  console.log("random string");
   UserModel.getUserByName(username).then((user) => {
-    console.log(user);
     if (user.password === password) {
       const cookie = {
         userName: user.name,

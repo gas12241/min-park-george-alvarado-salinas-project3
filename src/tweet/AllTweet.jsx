@@ -5,21 +5,23 @@ import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 export default function AllTweet() {
-  let loggedInClass = "loggedInClass";
+  const [loggedIn, setLoggedIn] = useState(false);
   useEffect(() => {
     Axios.get("/api/user/isLoggedIn")
       .then(() => {
-        loggedInClass = "loggedInClass";
+        setLoggedIn(true);
       })
       .catch((err) => {
-        loggedInClass = "notLoggedInClass";
+        setLoggedIn(false);
+        console.log(err);
       });
   }, []);
   const [tweets, setTweets] = useState([]);
   const [tweetInput, setTweetInput] = useState({
     name: "",
-    health: 0,
+    // health: 0,
     user: "",
+    date: Date.now,
   });
 
   function getAllTweetData() {
@@ -33,7 +35,7 @@ export default function AllTweet() {
     getAllTweetData();
   }, []);
 
-  function onNameInput(e) {
+  function onTweetInput(e) {
     const name = e.target.value;
     setTweetInput({
       ...tweetInput,
@@ -41,21 +43,21 @@ export default function AllTweet() {
     });
   }
 
-  function onHealthInput(e) {
-    const health = e.target.value;
-    setTweetInput({
-      ...tweetInput,
-      health,
-    });
-  }
+  // function onHealthInput(e) {
+  //   const health = e.target.value;
+  //   setTweetInput({
+  //     ...tweetInput,
+  //     health,
+  //   });
+  // }
 
-  function onUserInput(e) {
-    const user = e.target.value;
-    setTweetInput({
-      ...tweetInput,
-      user,
-    });
-  }
+  // function onUserInput(e) {
+  //   const user = e.target.value;
+  //   setTweetInput({
+  //     ...tweetInput,
+  //     user,
+  //   });
+  // }
 
   function onSubmit() {
     Axios.post("/api/tweet", tweetInput)
@@ -65,8 +67,9 @@ export default function AllTweet() {
       .finally(function () {
         setTweetInput({
           name: "",
-          health: 0,
+          // health: 0,
           user: "",
+          date: Date.now,
         });
       });
   }
@@ -81,32 +84,41 @@ export default function AllTweet() {
     );
     tweet_components.push(tweet_component);
   }
-
-  return (
-    // Different styles for logged in.
-    <div className={loggedInClass}>
-      <div>Here are all my Tweets: </div>
-      <ul>{tweet_components}</ul>
+  if (loggedIn) {
+    return (
+      // Different styles for logged in.
       <div>
-        Add new Tweet:
         <div>
-          Name: <input value={tweetInput.name} onInput={onNameInput} />
+          Add new Tweet:
+          <div>
+            Tweet: <input value={tweetInput.name} onInput={onTweetInput} />
+          </div>
+          {/* <div>
+            Health:{" "}
+            <input
+              type="number"
+              value={tweetInput.health}
+              onInput={onHealthInput}
+            />
+          </div> */}
+          {/* <div>
+            User: <input value={tweetInput.user} onInput={onUserInput} />
+          </div> */}
+          <div>
+            <button onClick={onSubmit}>Submit</button>
+          </div>
         </div>
-        <div>
-          Health:{" "}
-          <input
-            type="number"
-            value={tweetInput.health}
-            onInput={onHealthInput}
-          />
-        </div>
-        <div>
-          User: <input value={tweetInput.user} onInput={onUserInput} />
-        </div>
-        <div>
-          <button onClick={onSubmit}>Submit</button>
-        </div>
+        <div>Here are all my Tweets: </div>
+        <ul>{tweet_components}</ul>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      // Different styles for logged in.
+      <div>
+        <div>Here are all my Tweets: </div>
+        <ul>{tweet_components}</ul>
+      </div>
+    );
+  }
 }

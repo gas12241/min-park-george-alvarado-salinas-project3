@@ -21,7 +21,8 @@ export default function Register() {
       name: userName,
       password,
     }).then(function (response) {
-      navigate("/myTweet");
+      navigate("/all");
+      location.reload();
     });
   }
 

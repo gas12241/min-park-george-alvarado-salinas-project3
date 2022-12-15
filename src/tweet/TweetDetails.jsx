@@ -39,8 +39,8 @@ export default function TweetDetails() {
   return (
     <div>
       <div>Details for Tweet:</div>
-      <div>Name: {tweet.name}</div>
-      <div>Health: {tweet.health}</div>
+      <div>Tweet: {tweet.name}</div>
+      {/* <div>Health: {tweet.health}</div> */}
       <div>User: {tweet.user}</div>
     </div>
   );

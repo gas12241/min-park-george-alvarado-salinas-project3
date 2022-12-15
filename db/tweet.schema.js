@@ -2,9 +2,10 @@ const Schema = require("mongoose").Schema;
 
 exports.TweetSchema = new Schema(
   {
+    // pass in user instead of string
     name: String,
-    owner: String,
-    health: Number,
+    user: String,
+    // health: Number,
     date: {
       type: Date,
       default: Date.now,

@@ -8,8 +8,9 @@ export default function AllTweets() {
   const [tweets, setTweets] = useState([]);
   const [tweetInput, setTweetInput] = useState({
     name: "",
-    health: 0,
+    // health: 0,
     user: "",
+    date: Date.now,
   });
 
   function getAllTweetData() {
@@ -23,7 +24,7 @@ export default function AllTweets() {
     getAllTweetData();
   }, []);
 
-  function onNameInput(e) {
+  function onTweetInput(e) {
     const name = e.target.value;
     setTweetInput({
       ...tweetInput,
@@ -31,21 +32,21 @@ export default function AllTweets() {
     });
   }
 
-  function onHealthInput(e) {
-    const health = e.target.value;
-    setTweetInput({
-      ...tweetInput,
-      health,
-    });
-  }
+  // function onHealthInput(e) {
+  //   const health = e.target.value;
+  //   setTweetInput({
+  //     ...tweetInput,
+  //     health,
+  //   });
+  // }
 
-  function onUserInput(e) {
-    const user = e.target.value;
-    setTweetInput({
-      ...tweetInput,
-      user,
-    });
-  }
+  // function onUserInput(e) {
+  //   const user = e.target.value;
+  //   setTweetInput({
+  //     ...tweetInput,
+  //     user,
+  //   });
+  // }
 
   function onSubmit() {
     Axios.post("/api/tweet", tweetInput)
@@ -55,8 +56,9 @@ export default function AllTweets() {
       .finally(function () {
         setTweetInput({
           name: "",
-          health: 0,
+          // health: 0,
           user: "",
+          date: Date.now,
         });
       });
   }
@@ -73,29 +75,30 @@ export default function AllTweets() {
   }
 
   return (
+    // Different styles for logged in.
     <div>
-      <div>These are all your Tweets! </div>
-      <ul>{tweet_components}</ul>
       <div>
         Add new Tweet:
         <div>
-          Name: <input value={tweetInput.name} onInput={onNameInput} />
+          Tweet: <input value={tweetInput.name} onInput={onTweetInput} />
         </div>
-        <div>
+        {/* <div>
           Health:{" "}
           <input
             type="number"
             value={tweetInput.health}
             onInput={onHealthInput}
           />
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           User: <input value={tweetInput.user} onInput={onUserInput} />
-        </div>
+        </div> */}
         <div>
           <button onClick={onSubmit}>Submit</button>
         </div>
       </div>
+      <div>Here are all my Tweets: </div>
+      <ul>{tweet_components}</ul>
     </div>
   );
 }
