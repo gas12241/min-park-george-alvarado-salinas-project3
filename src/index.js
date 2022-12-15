@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 // import Calculator from './Calculator';
-import AllTweet from "./tweet/AllTweet";
 import AllMyTweet from "./tweet/AllMyTweet";
 import TweetDetails from "./tweet/TweetDetails";
 import Home from "./new_pages/Home";
@@ -36,10 +35,6 @@ const reactRouter = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/all",
-    element: <AllTweet />,
-  },
-  {
     path: "/myTweet",
     element: <AllMyTweet />,
   },
@@ -48,6 +43,10 @@ const reactRouter = createBrowserRouter([
   // 'localhost:3000' + /charizard
   {
     path: "/:tweetId",
+    element: <TweetDetails />,
+  },
+  {
+    path: "/user/:user",
     element: <TweetDetails />,
   },
   {
@@ -89,19 +88,29 @@ function Header() {
   if (loggedIn) {
     return (
       <nav className="nav">
-        <a href="/">Home</a>
-        <a href="/all">All Tweets</a>
-        <a href="/create-tweet"> Create Tweet</a>
-        <button onClick={logout}>Logout</button>
+        <div>
+          <a href="/" className="website-title">
+            Witter
+          </a>
+        </div>
+        <div className="nav-sideways">
+          <a href="/create-tweet">Create Tweet</a>
+          <button onClick={logout}>Logout</button>
+        </div>
       </nav>
     );
   } else {
     return (
       <nav className="nav">
-        <a href="/">Home</a>
-        <a href="/register">Register</a>
-        <a href="/all">All Tweets</a>
-        <a href="/login">Login</a>
+        <div>
+          <a href="/" className="website-title">
+            Witter
+          </a>
+        </div>
+        <div className="nav-sideways">
+          <a href="/register">Register</a>
+          <a href="/login">Login</a>
+        </div>
       </nav>
     );
   }
