@@ -35,7 +35,7 @@ const reactRouter = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/myTweet",
+    path: "/my-tweet",
     element: <AllMyTweet />,
   },
   // 'localhost:3000' + /123213
@@ -94,7 +94,7 @@ function Header() {
           </a>
         </div>
         <div className="nav-sideways">
-          <a href="/create-tweet">Create Tweet</a>
+          <a href="/my-tweet">Create Tweet</a>
           <button onClick={logout}>Logout</button>
         </div>
       </nav>

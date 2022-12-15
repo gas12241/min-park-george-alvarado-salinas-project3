@@ -86,7 +86,7 @@ export default function Home() {
     return (
       // Different styles for logged in.
       <div className="page-body">
-        <div>Here are all my Tweets: </div>
+        <div>Home Page</div>
         <ul>{tweet_components}</ul>
       </div>
     );

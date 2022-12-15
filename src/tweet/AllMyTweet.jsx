@@ -3,6 +3,7 @@ import Axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import "./Tweet.css";
 
 export default function AllTweets() {
   const [tweets, setTweets] = useState([]);
@@ -32,22 +33,6 @@ export default function AllTweets() {
     });
   }
 
-  // function onHealthInput(e) {
-  //   const health = e.target.value;
-  //   setTweetInput({
-  //     ...tweetInput,
-  //     health,
-  //   });
-  // }
-
-  // function onUserInput(e) {
-  //   const user = e.target.value;
-  //   setTweetInput({
-  //     ...tweetInput,
-  //     user,
-  //   });
-  // }
-
   function onSubmit() {
     Axios.post("/api/tweet", tweetInput)
       .then(function (response) {
@@ -76,29 +61,18 @@ export default function AllTweets() {
 
   return (
     // Different styles for logged in.
-    <div>
+    <div className="page-body">
+      <div>Add new Tweet:</div>
       <div>
-        Add new Tweet:
-        <div>
-          Tweet: <input value={tweetInput.name} onInput={onTweetInput} />
-        </div>
-        {/* <div>
-          Health:{" "}
-          <input
-            type="number"
-            value={tweetInput.health}
-            onInput={onHealthInput}
-          />
-        </div> */}
-        {/* <div>
-          User: <input value={tweetInput.user} onInput={onUserInput} />
-        </div> */}
-        <div>
-          <button onClick={onSubmit}>Submit</button>
-        </div>
+        Tweet: <input value={tweetInput.name} onInput={onTweetInput} />
       </div>
-      <div>Here are all my Tweets: </div>
-      <ul>{tweet_components}</ul>
+      <div>
+        <button onClick={onSubmit}>Submit</button>
+      </div>
+      <div>
+        <div>Here are all my Tweets: </div>
+        <ul>{tweet_components}</ul>
+      </div>
     </div>
   );
 }

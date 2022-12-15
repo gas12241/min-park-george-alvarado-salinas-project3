@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router";
+import "./Tweet.css";
 
 // 'localhost:3000/:pokemonId'
 // 'localhost:3000/123
@@ -37,11 +38,11 @@ export default function TweetDetails() {
   }
 
   return (
-    <div>
+    <div className="page-body">
       <div>Details for Tweet:</div>
       <div>Tweet: {tweet.name}</div>
-      {/* <div>Health: {tweet.health}</div> */}
       <div>User: {tweet.user}</div>
+      <div>Date: {tweet.date}</div>
     </div>
   );
 }
