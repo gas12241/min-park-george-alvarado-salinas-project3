@@ -5,6 +5,7 @@ import AllTweet from "./tweet/AllTweet";
 import AllMyTweet from "./tweet/AllMyTweet";
 import TweetDetails from "./tweet/TweetDetails";
 import "./index.css";
+import { useEffect } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -13,7 +14,7 @@ import {
 } from "react-router-dom";
 import Register from "./Register";
 import Login from "./Login";
-import axios from "axios";
+import Axios from "axios";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 // <img src="" />
@@ -54,20 +55,74 @@ const reactRouter = createBrowserRouter([
 ]);
 
 function Header() {
+  // Code I added, itk's supposed to say, normally you are set to
+  // not logged in, but if you are, set loggedInClass to loggedInClass
+  // and then that will be used below to check what should pop up.
+  let loggedInClass = "notLoggedInClass";
+  useEffect(() => {
+    Axios.get("/api/user/isLoggedIn")
+      .then(() => {
+        loggedInClass = "loggedInClass";
+      })
+      .catch((err) => {
+        loggedInClass = "notLoggedInClass";
+        console.log(err);
+      });
+  }, []);
+
   function logout() {
-    axios.post("/api/user/logOut").then(() => {
+    Axios.post("/api/user/logOut").then(() => {
       location.reload();
     });
   }
 
-  return (
-    <div>
-      <a href="/">Register</a>&nbsp;&nbsp;
-      <a href="/all">All Tweets</a> &nbsp;&nbsp;
-      <a href="/login">Login</a>
-      <button onClick={logout}>Logout</button>
-    </div>
-  );
+  // I also added this conditional, should work as follows
+  // if not logged in, return code to get to register, all tweets
+  // and login.  If you are logged in, only things that should pop
+  // up are the tweets and logout.
+  if (loggedInClass === "notLoggedInClass") {
+    return (
+      <div>
+        <a href="/">Register</a>&nbsp;&nbsp;
+        <a href="/all">All Tweets</a> &nbsp;&nbsp;
+        <a href="/login">Login</a>
+        <button onClick={logout}>Logout</button>
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        <div>You are logged in!</div>
+        <a href="/all">All Tweets</a> &nbsp;&nbsp;
+        <button onClick={logout}>Logout</button>
+      </div>
+    );
+  }
+  // return (
+  //   <div>
+  //     <a href="/">Register</a>&nbsp;&nbsp;
+  //     <a href="/all">All Tweets</a> &nbsp;&nbsp;
+  //     <a href="/login">Login</a>
+  //     <button onClick={logout}>Logout</button>
+  //   </div>
+  // );
+  // if (loggedInClass) {
+  //   return (
+  //     <div>
+  //       <a href="/all">All Tweets</a> &nbsp;&nbsp;
+  //       <button onClick={logout}>Logout</button>
+  //     </div>
+  //   );
+  // } else {
+  //   return (
+  //     <div>
+  //       <a href="/">Register</a>&nbsp;&nbsp;
+  //       <a href="/all">All Tweets</a> &nbsp;&nbsp;
+  //       <a href="/login">Login</a>
+  //       <button onClick={logout}>Logout</button>
+  //     </div>
+  //   );
+  // }
 }
 
 root.render(
