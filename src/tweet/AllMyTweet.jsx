@@ -10,8 +10,8 @@ export default function AllTweets() {
   const [tweetInput, setTweetInput] = useState({
     name: "",
     // health: 0,
-    user: "",
-    date: Date.now,
+    // user: "",
+    // date: Date.now,
   });
 
   function getAllTweetData() {
@@ -42,8 +42,8 @@ export default function AllTweets() {
         setTweetInput({
           name: "",
           // health: 0,
-          user: "",
-          date: Date.now,
+          // user: "",
+          // date: Date.now,
         });
       });
   }

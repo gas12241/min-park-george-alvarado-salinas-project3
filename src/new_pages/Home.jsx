@@ -21,8 +21,8 @@ export default function Home() {
   const [tweetInput, setTweetInput] = useState({
     name: "",
     // health: 0,
-    user: "",
-    date: Date.now,
+    // user: "",
+    // date: Date.now,
   });
 
   function getAllTweetData() {
@@ -53,9 +53,10 @@ export default function Home() {
         setTweetInput({
           name: "",
           // health: 0,
-          user: "",
-          date: Date.now,
+          // user: "",
+          // date: Date.now,
         });
+        location.reload();
       });
   }
 
