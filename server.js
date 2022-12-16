@@ -23,9 +23,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// From piazza post, delete if needed
-app.use(express.static("./src/dist/"));
-
 app.use("/api/tweet", TweetRoute);
 app.use("/api/user", UserRoute);
 
