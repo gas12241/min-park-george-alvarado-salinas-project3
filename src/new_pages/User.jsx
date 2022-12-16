@@ -84,6 +84,15 @@ export default function User() {
       <div className="box-styling">
         <div className="description-styling">{userprofile.description}</div>
       </div>
+      <div className="title-tag">Add new Tweet:</div>
+      <div className="spacing-style">
+        <div className="input-field">
+          <input value={tweetInput.name} onInput={onTweetInput} />
+        </div>
+      </div>
+      <div>
+        <button onClick={onSubmit}>Submit</button>
+      </div>
       <div>{tweet_components}</div>
     </div>
   );
