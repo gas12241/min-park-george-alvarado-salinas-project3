@@ -37,7 +37,7 @@ app.get("*", function (req, res) {
 });
 
 let mongoEndpoint =
-  "mongodb+srv://gas12241:Imawesome12241$@gcluster.fwv7u01.mongodb.net/?retryWrites=true&w=majority";
+  "const mongoDBEndpoint = process.env.MONGODB_URI || 'mongodb://127.0.0.1/collection_name';";
 if (process.env.MONGO) {
   mongoEndpoint = process.env.MONGO;
 }
