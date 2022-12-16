@@ -64,18 +64,25 @@ export default function Home() {
   for (let i = 0; i < tweets.length; i++) {
     const tweet = tweets[i];
     const tweet_component = (
-      <li>
+      <div>
         <NavLink to={"/" + tweet._id}>{tweet.name}</NavLink>
-      </li>
+        <br />
+        <date>{tweet.date}</date>
+        <br />
+        <br />
+        <br />
+      </div>
     );
     tweet_components.push(tweet_component);
   }
   if (loggedIn) {
     return (
       <div className="page-body">
-        <div>Add new Tweet:</div>
-        <div>
-          Tweet: <input value={tweetInput.name} onInput={onTweetInput} />
+        <div className="title-tag">Add new Tweet:</div>
+        <div className="spacing-style">
+          <div className="input-field">
+            <input value={tweetInput.name} onInput={onTweetInput} />
+          </div>
         </div>
         <div>
           <button onClick={onSubmit}>Submit</button>

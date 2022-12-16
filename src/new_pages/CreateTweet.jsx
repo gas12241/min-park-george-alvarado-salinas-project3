@@ -73,7 +73,7 @@ export default function CreateTweet() {
         <div className="title-tag">Add new Tweet:</div>
         <div className="spacing-style">
           <div className="input-field">
-            Tweet:{" "}
+            {" "}
             <input
               value={tweetInput.name}
               className="input-field"

@@ -64,7 +64,7 @@ export default function AllTweets() {
     <div className="page-body">
       <div>Add new Tweet:</div>
       <div>
-        Tweet: <input value={tweetInput.name} onInput={onTweetInput} />
+        <input value={tweetInput.name} onInput={onTweetInput} />
       </div>
       <div>
         <button onClick={onSubmit}>Submit</button>
