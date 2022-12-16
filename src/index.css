@@ -29,7 +29,7 @@ code {
 }
 .website-title:hover {
   transition: 200ms;
-  background-color: darkred;
+  background-color: teal;
 }
 
 .nav a {
@@ -43,7 +43,7 @@ code {
 
 .nav a:hover {
   transition: 200ms;
-  background-color: darkred;
+  background-color: teal;
 }
 
 .nav-sideways {

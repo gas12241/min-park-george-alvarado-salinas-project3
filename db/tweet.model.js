@@ -9,16 +9,8 @@ function insertTweet(tweet) {
 }
 
 function getAllTweets() {
-  return TweetModel.find().exec();
+  return TweetModel.find().exec().sort({ date: -1 });
 }
-
-// function getAllPokemonHealthAbove10() {
-//   return PokemonModel.find({
-//     health: {
-//       $gte: 10,
-//     },
-//   }).exec();
-// }
 
 function getTweetById(id) {
   return TweetModel.findById(id).exec();

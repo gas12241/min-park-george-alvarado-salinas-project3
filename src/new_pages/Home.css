@@ -14,3 +14,11 @@
 .spacing-style {
   padding-top: 1%;
 }
+.pretty-link {
+  text-decoration: none;
+  color: aqua;
+}
+.tweet-components {
+  background-color: teal;
+  margin: 5px;
+}

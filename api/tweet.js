@@ -69,6 +69,7 @@ router.post("/", function (request, response) {
   // });
 
   const body = request.body;
+  console.log(body);
   return TweetModel.insertTweet(body)
     .then(function (data) {
       const jwt_token = request.cookies.jwt_token;

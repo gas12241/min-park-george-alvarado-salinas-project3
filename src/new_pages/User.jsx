@@ -55,7 +55,9 @@ export default function User() {
     const tweet = tweets[i];
     const tweet_component = (
       <div className="tweet-components">
-        <NavLink to={"/" + tweet._id}>{tweet.name}</NavLink>
+        <NavLink className="pretty-link" to={"/" + tweet._id}>
+          {tweet.name}
+        </NavLink>
         <date>{tweet.date}</date>
         <br />
         <br />

@@ -36,10 +36,10 @@ app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-const mongoEndpoint =
-  process.env.MONGODB_URI || "mongodb://127.0.0.1/collection_name";
-// let mongoEndpoint =
-//   "mongodb+srv://gas12241:Imawesome12241$@gcluster.fwv7u01.mongodb.net/?retryWrites=true&w=majority";
+// const mongoEndpoint =
+//   process.env.MONGODB_URI || "mongodb://127.0.0.1/collection_name";
+let mongoEndpoint =
+  "mongodb+srv://gas12241:Imawesome12241$@gcluster.fwv7u01.mongodb.net/?retryWrites=true&w=majority";
 if (process.env.MONGO) {
   mongoEndpoint = process.env.MONGO;
 }

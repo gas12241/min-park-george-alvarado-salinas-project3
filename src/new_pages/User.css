@@ -29,3 +29,7 @@
   width: 50vw;
   flex-direction: column;
 }
+.pretty-link {
+  text-decoration: none;
+  color: aqua;
+}
