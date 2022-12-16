@@ -36,8 +36,7 @@ app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
-let mongoEndpoint =
-  "const mongoDBEndpoint = process.env.MONGODB_URI || 'mongodb://127.0.0.1/collection_name';";
+let mongoEndpoint = "mongodb://127.0.0.1/collection_name";
 if (process.env.MONGO) {
   mongoEndpoint = process.env.MONGO;
 }
