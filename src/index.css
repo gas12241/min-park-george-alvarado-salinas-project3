@@ -50,3 +50,14 @@ code {
   display: flex;
   flex-direction: row;
 }
+
+.title-tag {
+  font-size: 3rem;
+  margin-top: 1%;
+}
+.input-field {
+  font-size: 2rem;
+}
+.spacing-style {
+  padding-top: 1%;
+}

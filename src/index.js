@@ -5,6 +5,7 @@ import AllMyTweet from "./tweet/AllMyTweet";
 import TweetDetails from "./tweet/TweetDetails";
 import Home from "./new_pages/Home";
 import CreateTweet from "./new_pages/CreateTweet";
+import User from "./new_pages/User";
 import "./index.css";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -48,6 +49,10 @@ const reactRouter = createBrowserRouter([
   {
     path: "/user/:user",
     element: <TweetDetails />,
+  },
+  {
+    path: "/user",
+    element: <User />,
   },
   {
     path: "/create-tweet",
@@ -94,7 +99,8 @@ function Header() {
           </a>
         </div>
         <div className="nav-sideways">
-          <a href="/my-tweet">Create Tweet</a>
+          <a href="/user">User</a>
+          <a href="/create-tweet">Create Tweet</a>
           <button onClick={logout}>Logout</button>
         </div>
       </nav>

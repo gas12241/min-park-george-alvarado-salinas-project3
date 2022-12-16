@@ -8,6 +8,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     Axios.get("/api/user/isLoggedIn")
@@ -31,24 +32,31 @@ export default function Login() {
     Axios.post("/api/user/authenticate", {
       name: userName,
       password,
-    }).then(function (response) {
-      location.reload();
-      navigate("/");
-    });
+    })
+      .then(function (response) {
+        location.reload();
+        navigate("/");
+      })
+      .catch((err) => {
+        setErrorMessage("Invalid combination. Try again!");
+      });
   }
 
   return (
     <div className="page-body">
-      <p1>Login with Existing User</p1>
-      <div>
-        <label>Username:</label>
+      <div className="title-tag">Login with Existing User</div>
+      <div className="spacing-style">
+        <label className="input-field">Username:</label>
         <input type="text" onInput={updateUserName}></input>
       </div>
-      <div>
-        <label>Password:</label>
+      <div className="spacing-style">
+        <label className="input-field">Password:</label>
         <input type="password" onInput={updatePassword}></input>
       </div>
-      <button onClick={createUser}>Log In</button>
+      <div className="spacing-style">
+        <button onClick={createUser}>Log In</button>
+      </div>
+      <div className="spacing-style">{errorMessage}</div>
     </div>
   );
 }
