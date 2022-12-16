@@ -4,6 +4,9 @@
   "description": "",
   "main": "server.js",
   "proxy": "http://localhost:8000/",
+  "engines": {
+    "node": "xx.yy"
+  },
   "scripts": {
     "devstart": "concurrently \"nodemon ./server.js\" \"react-scripts start\"",
     "start": "node ./server.js",

@@ -18,13 +18,9 @@ export default function User() {
   const [tweets, setTweets] = useState([]);
   const [tweetInput, setTweetInput] = useState({
     name: "",
-    // health: 0,
-    // user: "",
-    // date: Date.now,
   });
 
   function getAllTweetData() {
-    // let getPokemonData = null;
     Axios.get("/api/tweet").then(function (response) {
       setTweets(response.data);
     });
@@ -50,9 +46,6 @@ export default function User() {
       .finally(function () {
         setTweetInput({
           name: "",
-          // health: 0,
-          // user: "",
-          // date: Date.now,
         });
       });
   }
@@ -61,9 +54,8 @@ export default function User() {
   for (let i = 0; i < tweets.length; i++) {
     const tweet = tweets[i];
     const tweet_component = (
-      <div>
+      <div className="tweet-components">
         <NavLink to={"/" + tweet._id}>{tweet.name}</NavLink>
-        <br />
         <date>{tweet.date}</date>
         <br />
         <br />

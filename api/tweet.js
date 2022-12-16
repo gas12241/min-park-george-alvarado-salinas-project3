@@ -54,71 +54,40 @@ router.get("/:tweetId/", function (req, res) {
   return TweetModel.getTweetById(tweetId).then(function (tweetResult) {
     return res.send(tweetResult);
   });
-  // for(let i = 0; i < pokemons.length; i++) {
-  //     const pokemon = pokemons[i];
-  //     if (pokemon.id === pokemonId) {
-  //         return res.send(pokemon);
-  //     }
-  // }
-
-  // res.status(404)
-  // res.send("Could not find pokemond with id " + pokemonId)
 });
 
-// 'http://localhost:8000/api/pokemon'
 router.post("/", function (request, response) {
-  const body = request.body;
+  //   const body = request.body;
+  //   return TweetModel.insertTweet(body)
+  //     .then(function (data) {
+  //       response.send(data);
+  //     })
+  //     .catch(function (err) {
+  //       response.status(400);
+  //       response.send(err);
+  //     });
+  // });
 
+  const body = request.body;
   return TweetModel.insertTweet(body)
     .then(function (data) {
-      response.send(data);
+      const jwt_token = request.cookies.jwt_token;
+      if (!jwt_token) {
+        return response.status("401").send("No token present!");
+      }
+      return jwt.verify(jwt_token, "GeorgesSECRET", function (err, decoded) {
+        if (err) {
+          return response.status(400).send("Invalid token");
+        } else {
+          const userName = decoded.userName;
+        }
+        return response.status(200).send({ user: userName }).send({ data });
+      });
     })
     .catch(function (err) {
       response.status(400);
       response.send(err);
     });
 });
-
-// router.post("/", function (request, response) {
-
-//   const body = request.body;
-
-//   return TweetModel.insertTweet(body)
-
-//     .then(function (data) {
-
-//       const jwt_token = request.cookies.jwt_token;
-
-//       if (!jwt_token) {
-
-//         return response.status("401").send("No token present!");
-
-//       }
-
-//       return jwt.verify(jwt_token, "GeorgesSECRET", function (err, decoded) {
-
-//         if (err) {
-
-//           return response.status(400).send("Invalid token");
-
-//         } else {
-
-//           const userName = decoded.userName;
-
-//       return response.status(200).send({user: userName}).send({data});
-
-//     }
-
-//     })
-
-//     .catch(function (err) {
-
-//       response.status(400);
-
-//       response.send(err);
-
-//     });
-
-// });
 
 module.exports = router;

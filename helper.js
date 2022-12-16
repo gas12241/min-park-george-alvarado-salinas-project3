@@ -1,9 +1,7 @@
 function makeEverythingLowercase(input) {
-
-    return input.toLowerCase()
-
+  return input.toLowerCase();
 }
 
 module.exports = {
-    makeEverythingLowercase: makeEverythingLowercase,
-}
+  makeEverythingLowercase: makeEverythingLowercase,
+};

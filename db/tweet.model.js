@@ -34,6 +34,5 @@ module.exports = {
   insertTweet,
   getAllTweets,
   getTweetById,
-  // getAllPokemonHealthAbove10,
   getTweetByUser,
 };

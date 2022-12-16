@@ -22,3 +22,10 @@
   font-size: 2rem;
   padding: 5px;
 }
+.tweet-components {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  flex-direction: column;
+}

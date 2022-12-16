@@ -20,13 +20,9 @@ export default function Home() {
   const [tweets, setTweets] = useState([]);
   const [tweetInput, setTweetInput] = useState({
     name: "",
-    // health: 0,
-    // user: "",
-    // date: Date.now,
   });
 
   function getAllTweetData() {
-    // let getPokemonData = null;
     Axios.get("/api/tweet").then(function (response) {
       setTweets(response.data);
     });
@@ -52,9 +48,6 @@ export default function Home() {
       .finally(function () {
         setTweetInput({
           name: "",
-          // health: 0,
-          // user: "",
-          // date: Date.now,
         });
         location.reload();
       });
@@ -64,9 +57,8 @@ export default function Home() {
   for (let i = 0; i < tweets.length; i++) {
     const tweet = tweets[i];
     const tweet_component = (
-      <div>
+      <div className="tweet-components">
         <NavLink to={"/" + tweet._id}>{tweet.name}</NavLink>
-        <br />
         <date>{tweet.date}</date>
         <br />
         <br />
@@ -92,7 +84,6 @@ export default function Home() {
     );
   } else {
     return (
-      // Different styles for logged in.
       <div className="page-body">
         <div>Home Page</div>
         <ul>{tweet_components}</ul>

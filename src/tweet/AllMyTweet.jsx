@@ -9,13 +9,9 @@ export default function AllTweets() {
   const [tweets, setTweets] = useState([]);
   const [tweetInput, setTweetInput] = useState({
     name: "",
-    // health: 0,
-    // user: "",
-    // date: Date.now,
   });
 
   function getAllTweetData() {
-    // let getPokemonData = null;
     Axios.get("/api/tweet").then(function (response) {
       setTweets(response.data);
     });
@@ -41,9 +37,6 @@ export default function AllTweets() {
       .finally(function () {
         setTweetInput({
           name: "",
-          // health: 0,
-          // user: "",
-          // date: Date.now,
         });
       });
   }
@@ -52,15 +45,18 @@ export default function AllTweets() {
   for (let i = 0; i < tweets.length; i++) {
     const tweet = tweets[i];
     const tweet_component = (
-      <li>
+      <div className="tweet-components">
         <NavLink to={"/" + tweet._id}>{tweet.name}</NavLink>
-      </li>
+        <date>{tweet.date}</date>
+        <br />
+        <br />
+        <br />
+      </div>
     );
     tweet_components.push(tweet_component);
   }
 
   return (
-    // Different styles for logged in.
     <div className="page-body">
       <div>Add new Tweet:</div>
       <div>

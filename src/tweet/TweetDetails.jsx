@@ -5,8 +5,6 @@ import { useEffect } from "react";
 import { useParams } from "react-router";
 import "./Tweet.css";
 
-// 'localhost:3000/:pokemonId'
-// 'localhost:3000/123
 export default function TweetDetails() {
   const params = useParams();
   const [tweet, setTweet] = useState({});
