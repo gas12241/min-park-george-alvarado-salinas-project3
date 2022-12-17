@@ -36,8 +36,11 @@ app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
+// This Endpoint works with Heroku and Render.
 const mongoEndpoint =
   process.env.MONGODB_URI || "mongodb://127.0.0.1/collection_name";
+
+// I used this to make my local machine connect to mongo.
 // let mongoEndpoint =
 //   "mongodb+srv://gas12241:Imawesome12241$@gcluster.fwv7u01.mongodb.net/?retryWrites=true&w=majority";
 if (process.env.MONGO) {
