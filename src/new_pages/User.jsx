@@ -47,9 +47,20 @@ export default function User() {
         setTweetInput({
           name: "",
         });
+        location.reload();
       });
   }
+  function formatDate(date) {
+    var d = new Date(date),
+      month = "" + (d.getMonth() + 1),
+      day = "" + d.getDate(),
+      year = d.getFullYear();
 
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
+
+    return [year, month, day].join("-");
+  }
   const tweet_components = [];
   for (let i = 0; i < tweets.length; i++) {
     const tweet = tweets[i];
@@ -58,7 +69,7 @@ export default function User() {
         <NavLink className="pretty-link" to={"/" + tweet._id}>
           {tweet.name}
         </NavLink>
-        <date>{tweet.date}</date>
+        <date>{formatDate(tweet.date)}</date>
         <br />
         <br />
         <br />

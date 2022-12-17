@@ -6,6 +6,10 @@ exports.UserSchema = new Schema(
       type: String,
       unique: true,
     },
+    date: {
+      type: Date,
+      default: Date.now,
+    },
     password: String,
   },
   { collection: "user" }

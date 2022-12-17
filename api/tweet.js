@@ -57,32 +57,10 @@ router.get("/:tweetId/", function (req, res) {
 });
 
 router.post("/", function (request, response) {
-  //   const body = request.body;
-  //   return TweetModel.insertTweet(body)
-  //     .then(function (data) {
-  //       response.send(data);
-  //     })
-  //     .catch(function (err) {
-  //       response.status(400);
-  //       response.send(err);
-  //     });
-  // });
-
   const body = request.body;
   return TweetModel.insertTweet(body)
     .then(function (data) {
-      const jwt_token = request.cookies.jwt_token;
-      if (!jwt_token) {
-        return response.status("401").send("No token present!");
-      }
-      return jwt.verify(jwt_token, "GeorgesSECRET", function (err, decoded) {
-        if (err) {
-          return response.status(400).send("Invalid token");
-        } else {
-          const userName = decoded.userName;
-        }
-        return response.status(200).send({ user: userName }).send({ data });
-      });
+      response.send(data);
     })
     .catch(function (err) {
       response.status(400);

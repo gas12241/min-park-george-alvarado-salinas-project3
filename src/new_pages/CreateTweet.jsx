@@ -20,21 +20,9 @@ export default function CreateTweet() {
         console.log(err);
       });
   }, []);
-  //const [tweets, setTweets] = useState([]);
   const [tweetInput, setTweetInput] = useState({
     name: "",
   });
-
-  // function getAllTweetData() {
-  //   // let getPokemonData = null;
-  //   Axios.get("/api/tweet").then(function (response) {
-  //     setTweets(response.data);
-  //   });
-  // }
-
-  // useEffect(function () {
-  //   getAllTweetData();
-  // }, []);
 
   function onTweetInput(e) {
     const name = e.target.value;

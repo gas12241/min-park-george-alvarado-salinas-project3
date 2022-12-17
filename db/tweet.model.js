@@ -9,7 +9,7 @@ function insertTweet(tweet) {
 }
 
 function getAllTweets() {
-  return TweetModel.find().exec();
+  return TweetModel.find().sort({ date: -1 }).exec();
 }
 
 function getTweetById(id) {
